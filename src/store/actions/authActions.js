@@ -21,3 +21,13 @@ export const signUp = form => async (dispatch, getState, getFirebase) => {
     await dispatch({ type: 'CREATE_USER_ERROR', payload: error.message });
   }
 };
+
+export const signOut = () => async (dispatch, getState, getFirebase) => {
+  const firebase = getFirebase();
+  try {
+    await firebase.auth().signOut();
+    await dispatch({ type: 'SIGN_OUT' });
+  } catch (error) {
+    await dispatch({ type: 'SIGN_OUT_ERROR', payload: error });
+  }
+};

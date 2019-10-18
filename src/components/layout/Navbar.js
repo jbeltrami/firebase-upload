@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signOut } from '../../store/actions/authActions';
 
 const Navbar = props => {
-  console.log(props);
+  const { onSignOut } = props;
   return (
     <div className="ui menu secondary pointing">
       <div className="ui container">
@@ -14,10 +17,32 @@ const Navbar = props => {
           <Link to="/signup">
             <div className="item">Sign Up</div>
           </Link>
+
+          <button
+            type="button"
+            className="item"
+            onClick={onSignOut}
+            onKeyPress={onSignOut}
+          >
+            Sign Out
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+const mapDispatchToProps = dispatch => ({
+  onSignOut: () => {
+    dispatch(signOut());
+  },
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Navbar);
+
+Navbar.propTypes = {
+  onSignOut: PropTypes.func,
+};
