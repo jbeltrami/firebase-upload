@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { signUp } from '../../store/actions/authActions';
+import { signUp } from '../../store/actions/authActionsCompiled';
 
 const SignUp = props => {
   const [form, setForm] = useState({
@@ -12,7 +12,6 @@ const SignUp = props => {
     email: '',
     password: '',
     userType: 'client',
-    createdAt: null,
   });
 
   const { auth, handleSignUp, authError } = props;

@@ -1,11 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 const Dashboard = props => {
-  console.log('dashboard props: ', props);
+  const { auth } = props;
+
+  if (!auth.uid) return <Redirect to="/signup" />;
   return (
-    <div>
+    <div className="ui main container">
       <h1>Dashboard</h1>
       <p>Goes here</p>
     </div>
@@ -15,9 +19,12 @@ const Dashboard = props => {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    firebase: state.firebase,
+    auth: state.firebase.auth,
     firestore: state.firestore,
   };
 };
 
 export default connect(mapStateToProps)(Dashboard);
+Dashboard.propTypes = {
+  auth: PropTypes.object,
+};

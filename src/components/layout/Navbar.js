@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signOut } from '../../store/actions/authActions';
+import { signOut } from '../../store/actions/authActionsCompiled';
 
 const Navbar = props => {
   const { onSignOut } = props;

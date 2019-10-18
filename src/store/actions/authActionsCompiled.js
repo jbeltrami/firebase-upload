@@ -14,6 +14,10 @@ export const signUp = form => async (dispatch, getState, getFirebase) => {
         firstName: form.firstName,
         lastName: form.lastName,
         initials: form.firstName[0] + form.lastName[0],
+        email: form.email,
+        password: form.password,
+        userType: form.userType,
+        createdAt: new Date(),
       });
 
     await dispatch({ type: 'CREATE_USER', payload: form });
