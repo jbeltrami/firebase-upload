@@ -1,4 +1,6 @@
 import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 const Dashboard = props => {
   console.log('dashboard props: ', props);
@@ -10,4 +12,12 @@ const Dashboard = props => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    firebase: state.firebase,
+    firestore: state.firestore,
+  };
+};
+
+export default connect(mapStateToProps)(Dashboard);
