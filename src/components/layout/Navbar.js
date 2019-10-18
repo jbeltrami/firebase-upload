@@ -4,15 +4,17 @@ import { Link } from 'react-router-dom';
 const Navbar = props => {
   console.log(props);
   return (
-    <div className="ui secondary pointing menu">
-      <Link to="/">
-        <div className="header item">Home</div>
-      </Link>
-
-      <div className="right menu">
-        <Link to="/signup">
-          <a className="item">Sign Up</a>
+    <div className="ui menu secondary pointing">
+      <div className="ui container">
+        <Link to="/">
+          <div className="header item">Home</div>
         </Link>
+
+        <div className="right menu">
+          <Link to="/signup">
+            <div className="item">Sign Up</div>
+          </Link>
+        </div>
       </div>
     </div>
   );

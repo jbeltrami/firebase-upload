@@ -8,7 +8,7 @@ import SignUp from './components/auth/SignUp';
 function App() {
   return (
     <BrowserRouter>
-      <div className="App ui container">
+      <div className="App">
         <Navbar />
         <Switch>
           <Route exact path="/" component={Dashboard} />

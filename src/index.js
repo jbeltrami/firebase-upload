@@ -10,6 +10,7 @@ import firebaseConfig from './config/fbConfig';
 import App from './App';
 import 'firebase/firestore';
 import 'firebase/auth';
+import './index.css';
 // Redux
 import rootReducer from './store/reducers/rootReducer';
 
