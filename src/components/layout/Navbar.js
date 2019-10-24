@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signOut } from '../../store/actions/authActionsCompiled';
+import { signOut } from '../../store/actions/authActions';
 
 const Navbar = props => {
   const { onSignOut } = props;
@@ -14,10 +14,9 @@ const Navbar = props => {
         </Link>
 
         <div className="right menu">
-          <Link to="/signup">
-            <div className="item">Sign Up</div>
+          <Link to="/signin">
+            <div className="item">Login</div>
           </Link>
-
           <button
             type="button"
             className="item"

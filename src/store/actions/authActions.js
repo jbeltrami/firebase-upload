@@ -11,18 +11,30 @@ export const signUp = form => async (dispatch, getState, getFirebase) => {
       .collection('users')
       .doc(fbNewUser.user.uid)
       .set({
+        userAdmin:
+          form.userType === 'client' ? form.userAdmin : fbNewUser.user.uid,
+        userType: form.userType,
         firstName: form.firstName,
         lastName: form.lastName,
         initials: form.firstName[0] + form.lastName[0],
         email: form.email,
         password: form.password,
-        userType: form.userType,
         createdAt: new Date(),
       });
 
     await dispatch({ type: 'CREATE_USER', payload: form });
   } catch (error) {
     await dispatch({ type: 'CREATE_USER_ERROR', payload: error.message });
+  }
+};
+
+export const signIn = user => async (dispatch, getState, getFirebase) => {
+  const firebase = getFirebase();
+  try {
+    await firebase.auth().signInWithEmailAndPassword(user.email, user.password);
+    await dispatch({ type: 'LOGIN', payload: user });
+  } catch (error) {
+    await dispatch({ type: 'LOGIN_ERROR', payload: error });
   }
 };
 

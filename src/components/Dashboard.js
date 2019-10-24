@@ -1,17 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 const Dashboard = props => {
   const { auth } = props;
 
-  if (!auth.uid) return <Redirect to="/signup" />;
+  if (!auth.uid) return <Redirect to="/signin" />;
   return (
     <div className="ui main container">
       <h1>Dashboard</h1>
-      <p>Goes here</p>
+      <div className="ui grid container">
+        <div className="ui row">
+          <div className="four wide column">
+            <Link to="/signup">
+              <div className="ui card">
+                <div className="content">
+                  <div className="header">Create new User</div>
+                  <div className="description">
+                    <p>Click here to create new user</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="four wide column"></div>
+          <div className="four wide column"></div>
+          <div className="four wide column"></div>
+          <div className="four wide column"></div>
+          <div className="four wide column"></div>
+          <div className="four wide column"></div>
+          <div className="four wide column"></div>
+        </div>
+      </div>
     </div>
   );
 };

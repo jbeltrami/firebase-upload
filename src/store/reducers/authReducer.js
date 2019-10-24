@@ -12,6 +12,12 @@ const authReducer = (state = { authError: '' }, action) => {
     case 'SIGN_OUT_ERROR':
       console.error('USER SIGN OUT ERROR: ', action.payload);
       return state;
+    case 'LOGIN':
+      console.log('USER LOGIN: ', action.payload.email);
+      return state;
+    case 'LOGIN_ERROR':
+      console.log('LOGIN FAILED', action.payload);
+      return state;
     default:
       return state;
   }

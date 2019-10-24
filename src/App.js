@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Navbar from './components/layout/Navbar';
 import Dashboard from './components/Dashboard';
 import SignUp from './components/auth/SignUp';
+import SignIn from './components/auth/SignIn';
 
 function App(props) {
   const { auth } = props;
@@ -18,6 +19,7 @@ function App(props) {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/signin" component={SignIn} />
           </Switch>
         </div>
       </BrowserRouter>
