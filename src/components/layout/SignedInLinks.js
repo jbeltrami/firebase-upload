@@ -13,10 +13,6 @@ const SignedInLinks = props => {
       </NavLink>
 
       <div className="right menu">
-        <NavLink className="item" to="/signin">
-          Login
-        </NavLink>
-
         <a
           className="item"
           role="button"
