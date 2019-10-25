@@ -1,39 +1,27 @@
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { signUp } from '../../store/actions/authActions';
 
 const SignUp = props => {
   const { auth, handleSignUp, authError } = props;
-  const [form, setForm] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    userType: '',
-    userAdmin: auth.uid,
-  });
+  const [form, setForm] = useState({ userType: 'client' });
 
   const handleSubmit = async e => {
     e.preventDefault();
     await handleSignUp(form);
-    await setForm({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      userType: '',
-      userAdmin: auth.uid,
-    });
   };
 
   const handleChange = e => {
     const key = e.target.name;
     const { value } = e.target;
 
-    setForm({ ...form, [key]: value });
+    const authUser = auth.uid;
+
+    setForm({ ...form, [key]: value, userAdmin: authUser });
   };
 
   const renderComponent = () => (
@@ -45,6 +33,7 @@ const SignUp = props => {
             <div className="field required">
               <label htmlFor="firstName">First Name</label>
               <input
+                required
                 type="text"
                 name="firstName"
                 placeholder="First Name"
@@ -55,6 +44,7 @@ const SignUp = props => {
               <label htmlFor="lastName">Last Name</label>
 
               <input
+                required
                 type="text"
                 name="lastName"
                 placeholder="Last Name"
@@ -69,6 +59,7 @@ const SignUp = props => {
             <div className="field required">
               <label htmlFor="email">Email</label>
               <input
+                required
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -78,6 +69,7 @@ const SignUp = props => {
             <div className="field required">
               <label htmlFor="password">Password</label>
               <input
+                required
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -113,6 +105,7 @@ const SignUp = props => {
     </div>
   );
 
+  if (!auth.uid) return <Redirect to="/signin" />;
   return renderComponent();
 };
 

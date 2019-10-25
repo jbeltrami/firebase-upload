@@ -1,47 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signOut } from '../../store/actions/authActions';
+import PropTypes from 'prop-types';
+// components
+import SignedInLinks from './SignedInLinks';
+import SignedOutLinks from './SignedOutLinks';
 
 const Navbar = props => {
-  const { onSignOut } = props;
-  return (
-    <div className="ui menu secondary pointing">
-      <div className="ui container">
-        <Link to="/">
-          <div className="header item">Home</div>
-        </Link>
+  const { auth, profile } = props;
 
-        <div className="right menu">
-          <Link to="/signin">
-            <div className="item">Login</div>
-          </Link>
-          <button
-            type="button"
-            className="item"
-            onClick={onSignOut}
-            onKeyPress={onSignOut}
-          >
-            Sign Out
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+  const renderLinks = () => {
+    if (!auth.uid) return <SignedOutLinks />;
+    return <SignedInLinks profile={profile} />;
+  };
+
+  return <nav className="ui menu secondary pointing">{renderLinks()}</nav>;
 };
 
-const mapDispatchToProps = dispatch => ({
-  onSignOut: () => {
-    dispatch(signOut());
-  },
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Navbar);
+const mapStateToProps = state =>
+  // console.log(state);
+  ({ auth: state.firebase.auth, profile: state.firebase.profile });
+export default connect(mapStateToProps)(Navbar);
 
 Navbar.propTypes = {
-  onSignOut: PropTypes.func,
+  auth: PropTypes.object,
+  profile: PropTypes.object,
 };
