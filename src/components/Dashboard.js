@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -26,7 +25,18 @@ const Dashboard = props => {
               </div>
             </Link>
           </div>
-          <div className="four wide column"></div>
+          <div className="four wide column">
+            <Link to="/upload">
+              <div className="ui card">
+                <div className="content">
+                  <div className="header">Upload New File</div>
+                  <div className="description">
+                    <p>Click here to upload file</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
           <div className="four wide column"></div>
           <div className="four wide column"></div>
           <div className="four wide column"></div>

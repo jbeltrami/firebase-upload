@@ -7,6 +7,7 @@ import Navbar from './components/layout/Navbar';
 import Dashboard from './components/Dashboard';
 import SignUp from './components/auth/SignUp';
 import SignIn from './components/auth/SignIn';
+import FileUpload from './components/upload/FileUpload';
 
 function App(props) {
   const { auth } = props;
@@ -20,6 +21,7 @@ function App(props) {
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/upload" component={FileUpload} />
           </Switch>
         </div>
       </BrowserRouter>
